@@ -2,15 +2,16 @@ package com.example.garage.service;
 
 
 import com.example.garage.model.Car;
-import com.example.garage.repasitory.Dao.CarRepasitory;
-import lombok.Getter;
-import lombok.Setter;
+import com.example.garage.repasitory.CarRepasitory;
+
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+
+import static org.springframework.http.HttpStatus.NOT_FOUND;
+
 @Service
-@Getter
-@Setter
 public class CarService {
 
     private int carNubmer;
@@ -21,15 +22,15 @@ public class CarService {
     }
 
     public Car getById(int id) {
-       return this.carRepasitory.findById(id);
+        return carRepasitory.findById(id).orElseThrow(() -> new ResponseStatusException(NOT_FOUND));
     }
 
     public List<Car> getAll() {
-        return carRepasitory.getAll();
+        return carRepasitory.findAll();
     }
 
     public Car addCar(Car car) {
-        return this.carRepasitory.save(car);
+        return carRepasitory.save(car);
     }
 
     public Car addRandomCar() {
@@ -41,16 +42,13 @@ public class CarService {
                 .model(models.get(getRandomNumber(0, 5)))
                 .build();
     }
+
     public static int getRandomNumber(int min, int max) {
         return (int) ((Math.random()) * (max - min) + min);
     }
 
     public void deleteCar(int id) {
-          carRepasitory.deleteCar(id);
-    }
-
-    public void updateCar (Car car, int id) {
-          carRepasitory.updateCar(car, id);
+        carRepasitory.deleteById(id);
     }
 
 }

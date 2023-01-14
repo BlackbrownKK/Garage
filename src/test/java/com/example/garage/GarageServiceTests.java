@@ -1,7 +1,7 @@
 package com.example.garage;
 
 import com.example.garage.model.Garage;
-import com.example.garage.repasitory.Dao.GarageRepasitory;
+import com.example.garage.repasitory.GarageRepasitory;
 import com.example.garage.service.GarageService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

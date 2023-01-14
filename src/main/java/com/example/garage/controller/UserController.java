@@ -43,10 +43,10 @@ public class UserController {
         return "User";
     }
 
-    @PostMapping("/{id}")
-    public String updateUser(Model model, @PathVariable int id, @RequestBody User user)   {
-        userService.updateUser(user, id);
-        model.addAttribute("user", userService.getById(id));
-        return "User";
-    }
+//    @PostMapping("/{id}")
+//    public String updateUser(Model model, @PathVariable int id, @RequestBody User user)   {
+//        userService.updateUser(user, id);
+//        model.addAttribute("user", userService.getById(id));
+//        return "User";
+//    }
 }

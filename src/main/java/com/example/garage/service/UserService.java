@@ -2,16 +2,17 @@ package com.example.garage.service;
 
 
 import com.example.garage.model.User;
-import com.example.garage.repasitory.Dao.UserRepasitory;
+import com.example.garage.repasitory.UserRepasitory;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
+import static org.springframework.http.HttpStatus.NOT_FOUND;
+
 @Service
-@Getter
-@Setter
 public class UserService {
     private final UserRepasitory userRepasitory;
 
@@ -20,11 +21,11 @@ public class UserService {
     }
 
     public User getById(int id) {
-        return this.userRepasitory.findById(id);
+        return userRepasitory.findById(id).orElseThrow(()->new ResponseStatusException(NOT_FOUND));
     }
 
     public List<User> getAll() {
-        return userRepasitory.getAll();
+        return userRepasitory.findAll();
     }
 
     public User addUser(User user) {
@@ -32,10 +33,7 @@ public class UserService {
     }
 
     public void deleteUser(int id) {
-        userRepasitory.deleteUser(id);
+        userRepasitory.deleteById(id);
     }
 
-    public void updateUser(User user, int id) {
-        userRepasitory.updateUser(user, id);
-    }
 }

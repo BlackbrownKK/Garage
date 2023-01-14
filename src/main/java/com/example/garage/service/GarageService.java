@@ -1,7 +1,7 @@
 package com.example.garage.service;
 
 import com.example.garage.model.Garage;
-import com.example.garage.repasitory.Dao.GarageRepasitory;
+import com.example.garage.repasitory.GarageRepasitory;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,8 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
-@Getter
-@Setter
 public class GarageService {
     private final GarageRepasitory garageRepasitory;
 
@@ -19,6 +17,6 @@ public class GarageService {
     }
 
     public List<Garage> getAll() {
-        return garageRepasitory.getAll();
+        return garageRepasitory.findAll();
     }
 }
