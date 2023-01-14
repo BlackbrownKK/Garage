@@ -37,13 +37,16 @@ public class CarController {
         return "Car";
     }
 
-//    @PostMapping("/{id}")
-//    public String updateCar(Model model, @PathVariable int id, @RequestBody Car car)   {
-//        carService.updateCar(car, id);
-//        model.addAttribute("car", carService.getById(id));
-//        return "Car";
-//
-//    }
+    @PostMapping("/{id}")
+    public String updateCar(Model model, @PathVariable int id, @RequestBody Car car)   {
+
+          carService.getById(id).setModel(car.getModel());
+          carService.getById(id).setUserIdOvner(car.getUserIdOvner());
+
+        model.addAttribute("car", carService.getById(id));
+        return "Car";
+
+    }
 
     @PutMapping("/random")
     public String saveNewRandomCar(Model model) {

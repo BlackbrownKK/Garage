@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
-public interface GarageRepasitory extends CrudRepository<Garage, Integer> {
+public interface GarageRepasitory {
     List<Garage> findAll();
 }

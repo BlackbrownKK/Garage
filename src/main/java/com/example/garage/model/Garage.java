@@ -9,11 +9,12 @@ import org.springframework.data.relational.core.mapping.Table;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Garage {
 
     private int carId;
     private String model;
-    @Id
     private int userIdOvner;
     private int userId;
     private String name;
