@@ -7,7 +7,7 @@ import org.springframework.data.relational.core.mapping.Table;
 
 @Data
 @Builder
-//@Table("Car")
+
 public class Car {
     @Id
     private int carId;

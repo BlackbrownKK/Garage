@@ -9,9 +9,7 @@ import org.springframework.data.relational.core.mapping.Table;
 
 @Data
 @Builder
-//@NoArgsConstructor
-//@AllArgsConstructor
-//@Table("User")
+
 public class User {
     @Id
     private int userId;
