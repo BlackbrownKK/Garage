@@ -1,6 +1,5 @@
 package com.example.garage.controller;
 
-
 import com.example.garage.model.User;
 import com.example.garage.service.UserService;
 import org.springframework.stereotype.Controller;
@@ -31,7 +30,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public String deleteUser(Model model, @PathVariable int id)   {
+    public String deleteUser(Model model, @PathVariable int id) {
         userService.deleteUser(id);
         model.addAttribute("Users", userService.getAll());
         return "Users";
@@ -43,10 +42,14 @@ public class UserController {
         return "User";
     }
 
-//    @PostMapping("/{id}")
-//    public String updateUser(Model model, @PathVariable int id, @RequestBody User user)   {
-//        userService.updateUser(user, id);
-//        model.addAttribute("user", userService.getById(id));
-//        return "User";
-//    }
+    @PostMapping("/{id}")
+    public String updateUser(Model model, @PathVariable int id, @RequestBody User user) {
+        User updatedUser = userService.getById(id);
+        updatedUser.setName(user.getName());
+        userService.addUser(updatedUser);
+        model.addAttribute("user", updatedUser);
+        return "User";
+    }
 }
+
+

@@ -1,7 +1,6 @@
 package com.example.garage.controller;
 
 
-
 import com.example.garage.model.Car;
 import com.example.garage.service.CarService;
 import org.springframework.stereotype.Controller;
@@ -19,7 +18,7 @@ public class CarController {
     }
 
     @GetMapping("/{id}")
-    public String getCar(Model model, @PathVariable int id)   {
+    public String getCar(Model model, @PathVariable int id) {
         model.addAttribute("car", carService.getById(id));
         return "Car";
 
@@ -38,25 +37,24 @@ public class CarController {
     }
 
     @PostMapping("/{id}")
-    public String updateCar(Model model, @PathVariable int id, @RequestBody Car car)   {
-
-          carService.getById(id).setModel(car.getModel());
-          carService.getById(id).setUserIdOvner(car.getUserIdOvner());
-
-        model.addAttribute("car", carService.getById(id));
+    public String updateCar(Model model, @PathVariable int id, @RequestBody Car car) {
+        Car updatedCar = carService.getById(id);
+        updatedCar.setUserIdOvner(car.getUserIdOvner());
+        updatedCar.setModel(car.getModel());
+        carService.addCar(updatedCar);
+        model.addAttribute("car", updatedCar);
         return "Car";
-
     }
 
     @PutMapping("/random")
     public String saveNewRandomCar(Model model) {
- carService.addCar(carService.addRandomCar());
+        carService.addCar(carService.addRandomCar());
         model.addAttribute("car", carService.addRandomCar());
         return "Car";
     }
 
     @DeleteMapping("/{id}")
-    public String deleteCar(Model model, @PathVariable int id)   {
+    public String deleteCar(Model model, @PathVariable int id) {
         carService.deleteCar(id);
         model.addAttribute("allCars", carService.getAll());
         return "allCars";

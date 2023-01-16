@@ -1,15 +1,16 @@
 package com.example.garage.integration;
 
-import com.example.garage.controller.UserController;
-import com.example.garage.model.Car;
+
 import com.example.garage.model.User;
-import com.example.garage.service.CarService;
 import com.example.garage.service.UserService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -17,10 +18,8 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -40,7 +39,6 @@ public class UserControllerTest {
                 .andDo(print()).andReturn();
     }
 
-
     @Test
     public void getAllUsersTest() throws Exception {
         mockMvc.perform(get("/users"))
@@ -48,18 +46,35 @@ public class UserControllerTest {
                 .andExpect(model().attributeExists("Users"));
     }
 
+    @Autowired
+    private ObjectMapper objectMapper;
+
     @Test
-    public void deleteCarTest() throws Exception {
+    public void saveNewUserTest() throws Exception {
+        when(userService.addUser(any())).thenReturn(User.builder().build());
+        mockMvc.perform(put("/users/new")
+                        .content(objectMapper.writeValueAsString(User.builder().build()))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(view().name("User"))
+                .andExpect(model().attributeExists("user"));
+    }
+    @Test
+    public void updateUserTest() throws Exception {
+
+        Mockito.when(userService.getById(anyInt())).thenReturn(User.builder().build());
+
+        mockMvc.perform(post("/users/" + anyInt())
+                        .content(objectMapper.writeValueAsString(User.builder().build()))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(view().name("User"))
+                .andExpect(model().attributeExists("user"));
+    }
+    @Test
+    public void deleteUserTest() throws Exception {
         when(userService.getById(anyInt())).thenReturn(User.builder().build());
         doNothing().when(userService).deleteUser(anyInt());
         mockMvc.perform(delete("/users/{id}", anyInt())).andExpect(status().isOk());
     }
-
-    @Test
-    public void saveNewCarTest() throws Exception {
-        when(userService.addUser(any())).thenReturn(User.builder().build());
-        mockMvc.perform(put("/users/new").flashAttr("user", User.builder().build()) )
-                .andExpect(status().isOk());
-    }
-
 }
