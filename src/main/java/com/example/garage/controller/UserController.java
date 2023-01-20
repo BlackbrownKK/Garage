@@ -1,10 +1,15 @@
 package com.example.garage.controller;
 
+import com.example.garage.model.Car;
 import com.example.garage.model.User;
 import com.example.garage.service.UserService;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/users")
@@ -12,11 +17,13 @@ public class UserController {
 
     private final UserService userService;
 
+
     public UserController(UserService userService) {
         this.userService = userService;
     }
 
     @GetMapping()
+    @Cacheable(value = "users")
     public String getAll(Model model) {
         model.addAttribute("Users", userService.getAll());
         return "Users";
@@ -25,8 +32,8 @@ public class UserController {
     @GetMapping("/{id}")
     public String getUser(Model model, @PathVariable int id) {
         model.addAttribute("user", userService.getById(id));
-
         return "User";
+
     }
 
     @DeleteMapping("/{id}")
