@@ -3,8 +3,7 @@ package com.example.garage.service;
 
 import com.example.garage.model.User;
 import com.example.garage.repasitory.UserRepasitory;
-import lombok.Getter;
-import lombok.Setter;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -20,10 +19,11 @@ public class UserService {
         this.userRepasitory = userRepasitory;
     }
 
+    @Cacheable(value = "user", key = "#id")
     public User getById(int id) {
         return userRepasitory.findById(id).orElseThrow(()->new ResponseStatusException(NOT_FOUND));
     }
-
+    @Cacheable(value = "users")
     public List<User> getAll() {
         return userRepasitory.findAll();
     }
