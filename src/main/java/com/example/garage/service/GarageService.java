@@ -2,9 +2,7 @@ package com.example.garage.service;
 
 import com.example.garage.model.Garage;
 import com.example.garage.repasitory.GarageRepasitory;
-
-import lombok.Getter;
-import lombok.Setter;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,7 +13,7 @@ public class GarageService {
     public GarageService(GarageRepasitory garageRepasitory) {
         this.garageRepasitory = garageRepasitory;
     }
-
+    @Cacheable(value = "grage")
     public List<Garage> getAll() {
         return garageRepasitory.findAll();
     }
