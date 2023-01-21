@@ -4,6 +4,7 @@ package com.example.garage.service;
 import com.example.garage.model.Car;
 import com.example.garage.repasitory.CarRepasitory;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -11,6 +12,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 
@@ -19,21 +21,20 @@ public class CarService {
 
     private int carNubmer;
     private final CarRepasitory carRepasitory;
-    private final Map<Integer, Car> cacheCar = new HashMap<>();
+//    private final Map<Integer, Car> cacheCar = new HashMap<>();
 
+    @Autowired
     public CarService(CarRepasitory carRepasitory) {
         this.carRepasitory = carRepasitory;
     }
 
-
-@Cacheable(value = "cacheCarName", key = "#id")
+    @Cacheable(value = "car", key = "#id")
     public Car getById(int id) {
-//        return carRepasitory.findById(id).orElseThrow(() -> new ResponseStatusException(NOT_FOUND));
-    return cacheCar.computeIfAbsent(id, key -> this.carRepasitory.findById(id).orElseThrow(()
-                -> new ResponseStatusException((NOT_FOUND))));
+        return carRepasitory.findById(id).orElseThrow(() -> new ResponseStatusException(NOT_FOUND));
+        }
 
-    }
 
+    @Cacheable(value = "cars")
     public List<Car> getAll() {
         return carRepasitory.findAll();
     }
@@ -61,3 +62,6 @@ public class CarService {
     }
 
 }
+
+
+//        return carRepasitory.findById(id).orElseThrow(() -> new ResponseStatusException(NOT_FOUND));
