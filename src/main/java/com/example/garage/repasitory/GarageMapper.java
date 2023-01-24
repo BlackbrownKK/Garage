@@ -11,10 +11,10 @@ public class GarageMapper implements RowMapper<Garage> {
     public Garage mapRow(ResultSet rows, int rowNum) throws SQLException {
 
         return Garage.builder()
-                .userId(rows.getInt("user_id"))
+                .userId(rows.getInt("user_Id"))
                 .name(rows.getString("name"))
-                .carId(rows.getInt("car_id"))
-                .userIdOvner(rows.getInt("user_id_ovner"))
+                .carId(rows.getInt("car_Id"))
+                .userIdOvner(rows.getInt("user_Id_Ovner"))
                 .model(rows.getString("model"))
                 .build();
     }

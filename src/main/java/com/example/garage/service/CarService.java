@@ -42,7 +42,8 @@ public class CarService {
 
         return Car
                 .builder()
-                .userIdOvner(0)
+                .carId(0)
+                .userIdOvner(1)
                 .model(models.get(getRandomNumber(0, 5)))
                 .build();
     }
