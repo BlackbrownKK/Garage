@@ -2,9 +2,6 @@ package com.example.garage.service;
 
 import com.example.garage.model.Garage;
 import com.example.garage.repasitory.GarageRepasitory;
-
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
