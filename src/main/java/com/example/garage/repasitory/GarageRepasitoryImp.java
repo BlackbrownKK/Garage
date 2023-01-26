@@ -16,9 +16,9 @@ public class GarageRepasitoryImp implements GarageRepasitory  {
 
     private static final String innerJoinGarage =
             """
-            Select * from public.user
-            INNER JOIN car on
-            car.user_id_ovner = public.user.user_id
+            SELECT * FROM "car"
+            INNER JOIN "user" 
+            on "user".user_Id = "car".user_Id_Ovner
             """;
 
     public List<Garage> findAll() {
