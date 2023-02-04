@@ -14,7 +14,7 @@ import java.awt.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="autority")
+@Table("autority")
 
 public class Autority implements GrantedAuthority {
 

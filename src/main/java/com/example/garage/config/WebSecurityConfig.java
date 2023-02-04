@@ -41,7 +41,7 @@ public class WebSecurityConfig {
                                         .and()
                 ).formLogin(
                         form -> form
-                                .loginPage("/login").usernameParameter("clientEmail")
+                                .loginPage("/login")
                                 .loginProcessingUrl("/login")
                                 .defaultSuccessUrl("/garage")
                                 .permitAll()

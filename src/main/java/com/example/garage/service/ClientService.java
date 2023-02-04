@@ -14,13 +14,13 @@ import java.util.List;
 public class ClientService {
     private final ClientRepasitory clientRepasitory;
     private final AutorityRepasitory autorityRepasitory;
-//    private final PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public ClientService(ClientRepasitory userRepository, AutorityRepasitory roleRepository ) {
+    public ClientService(ClientRepasitory userRepository, AutorityRepasitory roleRepository, PasswordEncoder passwordEncoder) {
         this.clientRepasitory = userRepository;
         this.autorityRepasitory = roleRepository;
-
+        this.passwordEncoder = passwordEncoder;
     }
 
     public void saveUser(Client incomingData) {
@@ -29,7 +29,7 @@ public class ClientService {
                 .clientFirstName(incomingData.getClientFirstName())
                 .clientLastName(incomingData.getClientLastName())
                 .clientEmail(incomingData.getClientEmail())
-                .clientPassword(   (incomingData.getClientPassword()))
+                .clientPassword(passwordEncoder.encode(incomingData.getClientPassword()))
                 .build());
 
         autorityRepasitory.save(Autority.builder()

@@ -1,5 +1,6 @@
-CREATE TABLE "client"
+CREATE TABLE public.client
 (
+
     client_id         integer NOT NULL AUTO_INCREMENT,
     enable            boolean NOT NULL,
     client_first_name text    NOT NULL,
@@ -9,18 +10,18 @@ CREATE TABLE "client"
     PRIMARY KEY (client_id)
 );
 
-CREATE TABLE "autority"
+CREATE TABLE public.autority
 (
     id integer NOT NULL AUTO_INCREMENT,
     client_id  integer NOT NULL,
     roles text NOT NULL,
     FOREIGN KEY (client_id)
-        REFERENCES "client" (client_id)
+        REFERENCES public.client (client_id)
         ON UPDATE NO ACTION
         ON DELETE CASCADE
 );
 
-INSERT INTO "client" VALUES (DEFAULT,true, 'client_first_name', 'client_last_name', 'client_email@ukr.net', 'password');
-INSERT INTO "client" VALUES (DEFAULT,true, 'user2', 'userUser2', 'client_email2@ukr.net', 'password2');
-INSERT INTO "autority" VALUES (DEFAULT, 1, 'USER');
-INSERT INTO "autority" VALUES (DEFAULT, 2, 'ADMIN');
+INSERT INTO public.client VALUES (DEFAULT,true, 'client_first_name', 'client_last_name', 'client_email@ukr.net', 'password');
+INSERT INTO public.client VALUES (DEFAULT,true, 'user2', 'userUser2', 'client_email2@ukr.net', 'password2');
+INSERT INTO public.autority VALUES (DEFAULT, 1, 'USER');
+INSERT INTO public.autority VALUES (DEFAULT, 2, 'ADMIN');
