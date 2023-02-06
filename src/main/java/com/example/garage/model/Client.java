@@ -9,25 +9,25 @@ import org.springframework.data.relational.core.mapping.Table;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table("client")
+@Table("CLIENT")
 public class Client {
 
     @Id
-    @Column("client_id")
+    @Column("CLIENT_ID")
     private int clientId;
 
-    @Column("enable")
+    @Column("ENABLE")
     private boolean enable;
 
-    @Column("client_first_name")
+    @Column("CLIENT_FIRST_NAME")
     private String clientFirstName;
 
-    @Column("client_last_name")
+    @Column("CLIENT_LAST_NAME")
     private String clientLastName;
 
-    @Column("client_email")
+    @Column("CLIENT_EMAIL")
     private String clientEmail;
 
-    @Column("client_passwordz")
+    @Column("CLIENT_PASSWORD")
     private String clientPassword;
 }

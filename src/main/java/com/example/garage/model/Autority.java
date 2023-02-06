@@ -14,16 +14,16 @@ import java.awt.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table("autority")
+@Table("AUTORITY")
 
 public class Autority implements GrantedAuthority {
 
     @Id
-    @Column("id")
+    @Column("ID")
     private int id;
-    @Column("client_id")
+    @Column("CLIENT_ID")
     private int clientId;
-    @Column("roles")
+    @Column("ROLE")
     private String role;
 
     @Override
