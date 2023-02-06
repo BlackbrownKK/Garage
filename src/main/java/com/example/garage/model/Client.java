@@ -28,6 +28,6 @@ public class Client {
     @Column("client_email")
     private String clientEmail;
 
-    @Column("client_password")
+    @Column("client_passwordz")
     private String clientPassword;
 }
