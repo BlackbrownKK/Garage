@@ -1,6 +1,5 @@
 package com.example.garage.controller;
 
-import com.example.garage.model.Car;
 import com.example.garage.model.Client;
 import com.example.garage.service.ClientService;
 import org.springframework.stereotype.Controller;
@@ -24,25 +23,18 @@ public class LoginController {
     }
 
 
-    @GetMapping("/registeretion")
-    public String registeretioNewClient(Model model) {
+    @GetMapping("/register")
+    public String showRegistrationForm(Model model){
+        // create model object to store form data
         model.addAttribute("user", Client.builder()
                 .build());
-        return "registeretion";
+        return "register";
     }
 
     // https://www.javaguides.net/2018/10/user-registration-module-using-springboot-springmvc-springsecurity-hibernate5-thymeleaf-mysql.html
 
-//    @PostMapping("/login")
-//    public String autorisation(@ModelAttribute("client") @RequestBody Client client, Model model) {
-//        System.out.println(client.getClientEmail());
-//        System.out.println(client.getClientPassword());
-//
-//        System.out.println(clientServise.findByEmail(client.getClientEmail()).getClientFirstName());
-//        return "localhost:8080/garage";
-//    }
 
-    @PostMapping("/registeretion/save")
+    @PostMapping("/register/save")
     public String saveNewClient(@ModelAttribute("user") Client client, BindingResult result, Model model) {
 
         Client presentClient = clientServise.findByEmail(client.getClientEmail());
@@ -54,7 +46,7 @@ public class LoginController {
 
         if (result.hasErrors()) {
             model.addAttribute("user", client);
-            return "/registeretion";
+            return "register";
         }
 
         clientServise.saveUser(client);

@@ -34,9 +34,9 @@ public class WebSecurityConfig {
         http.csrf().disable()
                 .authorizeHttpRequests((authorize) ->
                                 authorize
-                                        .requestMatchers("/login", "/registeretion").permitAll()
+                                        .requestMatchers(  "/register/**").permitAll()
                                         .requestMatchers("/garage").hasAnyAuthority("USER")
-                                        .requestMatchers("/cars", "/users").hasRole("ADMIN")
+//                                        .requestMatchers("/cars", "/users").hasRole("ADMIN")
                                         .anyRequest().authenticated()
                                         .and()
                 ).formLogin(
@@ -46,7 +46,7 @@ public class WebSecurityConfig {
                                 .defaultSuccessUrl("/garage")
                                 .permitAll()
                 ).logout(
-                        logot -> logot
+                        logout -> logout
                                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                                 .permitAll()
                 );
