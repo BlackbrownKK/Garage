@@ -33,7 +33,7 @@ public class ClientService {
                 .build());
 
         autorityRepasitory.save(Autority.builder()
-                .id(savedUser.getClientId())
+                .clientId(savedUser.getClientId())
                 .role("USER")
                 .build());
     }

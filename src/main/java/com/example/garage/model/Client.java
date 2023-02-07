@@ -16,9 +16,6 @@ public class Client {
     @Column("CLIENT_ID")
     private int clientId;
 
-    @Column("ENABLE")
-    private boolean enable;
-
     @Column("CLIENT_FIRST_NAME")
     private String clientFirstName;
 

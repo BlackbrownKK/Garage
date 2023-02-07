@@ -17,7 +17,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class WebSecurityConfig {
 
 
-    private UserDetailsService userDetailsService;
+    private final UserDetailsService userDetailsService;
 
     @Autowired
     public WebSecurityConfig(UserDetailsService userDetailsService) {
@@ -35,8 +35,8 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests((authorize) ->
                                 authorize
                                         .requestMatchers(  "/register/**").permitAll()
-                                        .requestMatchers("/garage").hasAnyAuthority("USER")
-//                                        .requestMatchers("/cars", "/users").hasRole("ADMIN")
+                                        .requestMatchers("/garage", "/cars", "/users").hasAnyAuthority("USER", "ADMIN" )
+                                        .requestMatchers("/garage", "/cars/**", "/users/**").hasAuthority("ADMIN" )
                                         .anyRequest().authenticated()
                                         .and()
                 ).formLogin(
