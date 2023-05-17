@@ -1,76 +1,7 @@
 Hello!
+some new contetn. + add new few words
 Hello!//Hello!//Hello!
 k.kosteniuk@HP-ProBook MINGW64 ~
 $ cd c:\Users\k.kosteniuk\Desktop
 bash: cd: c:Usersk.kosteniukDesktop: No such file or directory
-
-k.kosteniuk@HP-ProBook MINGW64 ~
-$
  
-
-k.kosteniuk@HP-ProBook MINGW64 ~
-$ c\Users
-bash: cUsers: command not found
-
-k.kosteniuk@HP-ProBook MINGW64 ~
-$ cd C:\Users
-
-k.kosteniuk@HP-ProBook MINGW64 /c/Users
-$ cd k.kosteniuk
-
-k.kosteniuk@HP-ProBook MINGW64 ~
-$ cd Desktop
-
-k.kosteniuk@HP-ProBook MINGW64 ~/Desktop
-$ cd hillel
-
-k.kosteniuk@HP-ProBook MINGW64 ~/Desktop/hillel
-$ git clone git@github.com:BlackbrownKK/Garage.git
-Cloning into 'Garage'...
-Enter passphrase for key '/c/Users/k.kosteniuk/.ssh/id_rsa':
-remote: Enumerating objects: 426, done.
-remote: Counting objects: 100% (426/426), done.
-remote: Compressing objects: 100% (202/202), done.
-remote: Total 426 (delta 166), reused 387 (delta 132), pack-reused 0
-Receiving objects: 100% (426/426), 52.89 KiB | 496.00 KiB/s, done.
-Resolving deltas: 100% (166/166), done.
-
-k.kosteniuk@HP-ProBook MINGW64 ~/Desktop/hillel
-$ git clone git@github.com:BlackbrownKK/Garage.git^C
-
-k.kosteniuk@HP-ProBook MINGW64 ~/Desktop/hillel
-$ ^C
-
-k.kosteniuk@HP-ProBook MINGW64 ~/Desktop/hillel
-$ ls
-Garage/  en-dictionary.txt  projects/
-
-k.kosteniuk@HP-ProBook MINGW64 ~/Desktop/hillel
-$ git remote -v
-fatal: not a git repository (or any of the parent directories): .git
-
-k.kosteniuk@HP-ProBook MINGW64 ~/Desktop/hillel
-$ ls
-Garage/  en-dictionary.txt  projects/
-
-k.kosteniuk@HP-ProBook MINGW64 ~/Desktop/hillel
-$ git remote -v
-fatal: not a git repository (or any of the parent directories): .git
-
-k.kosteniuk@HP-ProBook MINGW64 ~/Desktop/hillel
-$ ls
-Garage/  en-dictionary.txt  projects/
-
-k.kosteniuk@HP-ProBook MINGW64 ~/Desktop/hillel
-$ cd Garage/
-
-k.kosteniuk@HP-ProBook MINGW64 ~/Desktop/hillel/Garage (master)
-$ git remote -v
-origin  git@github.com:BlackbrownKK/Garage.git (fetch)
-origin  git@github.com:BlackbrownKK/Garage.git (push)
-
-k.kosteniuk@HP-ProBook MINGW64 ~/Desktop/hillel/Garage (master)
-$ ^C
-
-k.kosteniuk@HP-ProBook MINGW64 ~/Desktop/hillel/Garage (master)
-$
