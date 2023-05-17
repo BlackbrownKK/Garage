@@ -1,14 +1,12 @@
 Hello!
+Hello!//Hello!//Hello!
 k.kosteniuk@HP-ProBook MINGW64 ~
 $ cd c:\Users\k.kosteniuk\Desktop
 bash: cd: c:Usersk.kosteniukDesktop: No such file or directory
 
 k.kosteniuk@HP-ProBook MINGW64 ~
 $
-
-k.kosteniuk@HP-ProBook MINGW64 ~
-$  cd C:\Users\k.kosteniuk\Desktop\hillel
-bash: cd: C:Usersk.kosteniukDesktophillel: No such file or directory
+ 
 
 k.kosteniuk@HP-ProBook MINGW64 ~
 $ c\Users
